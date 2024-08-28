@@ -1,8 +1,8 @@
 import GeocoderControl from 'components/molecules/geocoder-control/geocoder-control';
-import { CircleLayer } from 'mapbox-gl';
-import { SymbolLayer } from 'mapbox-gl';
+// import { CircleLayer } from 'mapbox-gl';
+// import { SymbolLayer } from 'mapbox-gl';
 import React, { useState } from 'react';
-import Map, { Source, Layer, LineLayer, FillLayer } from 'react-map-gl';
+import Map from 'react-map-gl';
 
 const MAPBOX_TOKEN =
 	'pk.eyJ1IjoiYWJpLWxhayIsImEiOiJjbHkybHIxcHgxOXh1MmpwbjN1Y2Y5NTRoIn0.peVlXdamFZWS_g93VqUuVA';
@@ -11,66 +11,66 @@ const mapStyle = 'mapbox://styles/abi-lak/cm06cx70y00j201qodv0i1qji';
 // const mapStyle = 'mapbox://styles/mapbox/light-v11';
 // const mapStyle = 'mapbox://styles/abi-lak/cm03jwlx800cv01ph0jsnfdn8';
 
-const lineLayerState: LineLayer = {
-	id: 'line-state',
-	type: 'line',
-	source: 'mapbox',
-	'source-layer': 'STATES-59pk6a',
-	paint: {
-		'line-color': 'rgba(0, 0, 0, 1)',
-	},
-	minzoom: 2,
-	maxzoom: 5,
-};
-const lineLayerDistrict: LineLayer = {
-	id: 'line-district',
-	type: 'line',
-	source: 'mapbox',
-	'source-layer': 'DISTRICTS-aeyriq',
-	paint: {
-		'line-color': 'rgba(0, 0, 0, 1)',
-	},
-	minzoom: 5,
-	maxzoom: 8,
-};
-const lineLayerSubDistrict: LineLayer = {
-	id: 'line-sub-district',
-	type: 'line',
-	source: 'mapbox',
-	'source-layer': 'SUB_DISTRICTS-16jecf',
-	paint: {
-		'line-color': 'rgba(0, 0, 0, 1)',
-	},
-	minzoom: 8,
-	maxzoom: 10,
-};
-const circleLayerState: SymbolLayer = {
-	id: 'circle-layer',
-	type: 'symbol',
-	source: 'mapbox',
-	'source-layer': 'CENTROID_STATES-1gocmc',
-	layout: {
-		'text-field': ['get', 'STNAME_SH'], // Display the 'STNAME_SH' property as text
-		'text-size': [
-			'interpolate', // Interpolation for dynamic size
-			['linear'],
-			['zoom'], // Zoom level reference
-			2,
-			10, // At zoom level 2, text size is 10
-			5,
-			14, // At zoom level 5, text size is 14
-			10,
-			20, // At zoom level 10, text size is 20
-		],
-		'text-offset': [0, 0.5], // Adjust text position relative to the point
-		'text-anchor': 'top', // Position text above the point
-	},
-	paint: {
-		'text-color': '#000000', // Set text color
-	},
-	minzoom: 2,
-	maxzoom: 5,
-};
+// const lineLayerState: LineLayer = {
+// 	id: 'line-state',
+// 	type: 'line',
+// 	source: 'mapbox',
+// 	'source-layer': 'STATES-59pk6a',
+// 	paint: {
+// 		'line-color': 'rgba(0, 0, 0, 1)',
+// 	},
+// 	minzoom: 2,
+// 	maxzoom: 5,
+// };
+// const lineLayerDistrict: LineLayer = {
+// 	id: 'line-district',
+// 	type: 'line',
+// 	source: 'mapbox',
+// 	'source-layer': 'DISTRICTS-aeyriq',
+// 	paint: {
+// 		'line-color': 'rgba(0, 0, 0, 1)',
+// 	},
+// 	minzoom: 5,
+// 	maxzoom: 8,
+// };
+// const lineLayerSubDistrict: LineLayer = {
+// 	id: 'line-sub-district',
+// 	type: 'line',
+// 	source: 'mapbox',
+// 	'source-layer': 'SUB_DISTRICTS-16jecf',
+// 	paint: {
+// 		'line-color': 'rgba(0, 0, 0, 1)',
+// 	},
+// 	minzoom: 8,
+// 	maxzoom: 10,
+// };
+// const circleLayerState: SymbolLayer = {
+// 	id: 'circle-layer',
+// 	type: 'symbol',
+// 	source: 'mapbox',
+// 	'source-layer': 'CENTROID_STATES-1gocmc',
+// 	layout: {
+// 		'text-field': ['get', 'STNAME_SH'], // Display the 'STNAME_SH' property as text
+// 		'text-size': [
+// 			'interpolate', // Interpolation for dynamic size
+// 			['linear'],
+// 			['zoom'], // Zoom level reference
+// 			2,
+// 			10, // At zoom level 2, text size is 10
+// 			5,
+// 			14, // At zoom level 5, text size is 14
+// 			10,
+// 			20, // At zoom level 10, text size is 20
+// 		],
+// 		'text-offset': [0, 0.5], // Adjust text position relative to the point
+// 		'text-anchor': 'top', // Position text above the point
+// 	},
+// 	paint: {
+// 		'text-color': '#000000', // Set text color
+// 	},
+// 	minzoom: 2,
+// 	maxzoom: 5,
+// };
 // const symbolLayerState: SymbolLayer = {
 // 	id: 'point-labels',
 // 	type: 'symbol',
@@ -87,55 +87,55 @@ const circleLayerState: SymbolLayer = {
 // 	},
 // };
 
-interface Filters {
-	'doc-1': boolean;
-	doc0to10: boolean;
-	doc10plus: boolean;
-}
+// interface Filters {
+// 	'doc-1': boolean;
+// 	doc0to10: boolean;
+// 	doc10plus: boolean;
+// }
 
 const MapComponent: React.FC = () => {
-	const [filters, setFilters] = useState<Filters>({
-		'doc-1': true,
-		doc0to10: true,
-		doc10plus: true,
-	});
+	// const [filters, setFilters] = useState<Filters>({
+	// 	'doc-1': true,
+	// 	doc0to10: true,
+	// 	doc10plus: true,
+	// });
 
 	const [mapLoaded, setMapLoaded] = useState(false);
 
-	const fillLayer: FillLayer = {
-		id: 'fill',
-		type: 'fill',
-		source: 'mapbox',
-		'source-layer': 'map_test_1',
-		paint: {
-			'fill-color': [
-				'case',
-				['<=', ['get', 'doc'], -1],
-				'blue', // Blue fill for doc < -1
-				['all', ['>', ['get', 'doc'], -1], ['<=', ['get', 'doc'], 10]],
-				'green', // Green fill for -1 <= doc <= 10
-				['>', ['get', 'doc'], 10],
-				'red', // Red fill for doc > 10
-				'black', // Default fill color
-			],
-		},
-		filter: [
-			'any',
-			filters['doc-1'] ? ['<=', ['get', 'doc'], -1] : false,
-			filters['doc0to10']
-				? ['all', ['>', ['get', 'doc'], -1], ['<=', ['get', 'doc'], 10]]
-				: false,
-			filters['doc10plus'] ? ['>', ['get', 'doc'], 10] : false,
-		],
-	};
+	// const fillLayer: FillLayer = {
+	// 	id: 'fill',
+	// 	type: 'fill',
+	// 	source: 'mapbox',
+	// 	'source-layer': 'map_test_1',
+	// 	paint: {
+	// 		'fill-color': [
+	// 			'case',
+	// 			['<=', ['get', 'doc'], -1],
+	// 			'blue', // Blue fill for doc < -1
+	// 			['all', ['>', ['get', 'doc'], -1], ['<=', ['get', 'doc'], 10]],
+	// 			'green', // Green fill for -1 <= doc <= 10
+	// 			['>', ['get', 'doc'], 10],
+	// 			'red', // Red fill for doc > 10
+	// 			'black', // Default fill color
+	// 		],
+	// 	},
+	// 	filter: [
+	// 		'any',
+	// 		filters['doc-1'] ? ['<=', ['get', 'doc'], -1] : false,
+	// 		filters['doc0to10']
+	// 			? ['all', ['>', ['get', 'doc'], -1], ['<=', ['get', 'doc'], 10]]
+	// 			: false,
+	// 		filters['doc10plus'] ? ['>', ['get', 'doc'], 10] : false,
+	// 	],
+	// };
 
-	const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const { name, checked } = e.target;
-		setFilters((prevFilters) => ({
-			...prevFilters,
-			[name]: checked,
-		}));
-	};
+	// const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	// 	const { name, checked } = e.target;
+	// 	setFilters((prevFilters) => ({
+	// 		...prevFilters,
+	// 		[name]: checked,
+	// 	}));
+	// };
 
 	const handleMapLoad = () => {
 		setMapLoaded(true);

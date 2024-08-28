@@ -7,7 +7,7 @@ import Map, {
 	CircleLayer,
 	LayerProps,
 } from 'react-map-gl';
-import INDIA_STATES from '../../../assests/INDIA_STATES.json';
+// import INDIA_STATES from '../../../assests/INDIA_STATES.json';
 
 const mapStyle = 'mapbox://styles/mapbox/standard';
 // const mapStyle = 'mapbox://styles/abi-lak/cm03jwlx800cv01ph0jsnfdn8';
@@ -108,7 +108,7 @@ export const dataLayerFill: LayerProps = {
 };
 
 const MapComponent: React.FC = () => {
-	const [filters, setFilters] = useState<Filters>({
+	const [filters] = useState<Filters>({
 		'doc-1': true,
 		doc0to10: true,
 		doc10plus: true,
@@ -144,13 +144,13 @@ const MapComponent: React.FC = () => {
 		],
 	};
 
-	const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const { name, checked } = e.target;
-		setFilters((prevFilters) => ({
-			...prevFilters,
-			[name]: checked,
-		}));
-	};
+	// const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	// 	const { name, checked } = e.target;
+	// 	setFilters((prevFilters) => ({
+	// 		...prevFilters,
+	// 		[name]: checked,
+	// 	}));
+	// };
 
 	const handleMapLoad = () => {
 		setMapLoaded(true);
@@ -223,7 +223,7 @@ const MapComponent: React.FC = () => {
 				}}
 				style={{ width: '100%', height: '100%' }}
 				mapStyle={mapStyle}
-				mapboxAccessToken={MAPBOX_TOKEN}
+				// mapboxAccessToken={MAPBOX_TOKEN}
 				onLoad={handleMapLoad}
 			>
 				{mapLoaded && (

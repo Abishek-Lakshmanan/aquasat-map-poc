@@ -7,7 +7,7 @@ import Map, {
 	CircleLayer,
 	LayerProps,
 } from 'react-map-gl';
-import INDIA_STATES from '../../../assests/INDIA_STATES.json';
+// import INDIA_STATES from '../../../assests/INDIA_STATES.json';
 
 const MAPBOX_TOKEN =
 	'pk.eyJ1IjoiYWJpLWxhayIsImEiOiJjbHkybHIxcHgxOXh1MmpwbjN1Y2Y5NTRoIn0.peVlXdamFZWS_g93VqUuVA';
@@ -203,7 +203,7 @@ export const dataLayerFill: LayerProps = {
 };
 
 const MapComponent: React.FC = () => {
-	const [filters, setFilters] = useState<Filters>({
+	const [filters] = useState<Filters>({
 		'doc-1': true,
 		doc0to10: true,
 		doc10plus: true,
@@ -239,13 +239,13 @@ const MapComponent: React.FC = () => {
 		],
 	};
 
-	const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const { name, checked } = e.target;
-		setFilters((prevFilters) => ({
-			...prevFilters,
-			[name]: checked,
-		}));
-	};
+	// const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	// 	const { name, checked } = e.target;
+	// 	setFilters((prevFilters) => ({
+	// 		...prevFilters,
+	// 		[name]: checked,
+	// 	}));
+	// };
 
 	const handleMapLoad = () => {
 		setMapLoaded(true);
