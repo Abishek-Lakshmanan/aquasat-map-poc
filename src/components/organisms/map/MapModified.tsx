@@ -2,7 +2,7 @@ import GeocoderControl from 'components/molecules/geocoder-control/geocoder-cont
 // import { CircleLayer } from 'mapbox-gl';
 // import { SymbolLayer } from 'mapbox-gl';
 import React, { useState } from 'react';
-import Map from 'react-map-gl';
+import Map, { NavigationControl } from 'react-map-gl';
 
 const MAPBOX_TOKEN =
 	'pk.eyJ1IjoiYWJpLWxhayIsImEiOiJjbHkybHIxcHgxOXh1MmpwbjN1Y2Y5NTRoIn0.peVlXdamFZWS_g93VqUuVA';
@@ -217,10 +217,11 @@ const MapComponent: React.FC = () => {
 					// 	<Layer {...dataLayer} />
 					// </Source>
 					<>
-						<div>
+						<NavigationControl position='top-right' />
+						<div className='custom-geocoder'>
 							<GeocoderControl
 								mapboxAccessToken={MAPBOX_TOKEN}
-								position='top-right'
+								position='top-left'
 							/>
 						</div>
 						{/* <Source
